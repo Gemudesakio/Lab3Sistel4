@@ -1,0 +1,25 @@
+{
+  "name": "labsistel_prac4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SantiagoV09/LabSisTel_Prac4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SantiagoV09/LabSisTel_Prac4/issues"
+  },
+  "homepage": "https://github.com/SantiagoV09/LabSisTel_Prac4#readme",
+  "dependencies": {
+    "ari-client": "^2.2.0",
+    "gtts": "^0.2.1",
+    "mysql": "^2.18.1",
+    "sox-audio": "^0.3.0"
+  }
+}
