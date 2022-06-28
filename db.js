@@ -22,5 +22,9 @@ const consultasDB = ( query ) => {
           if (error) return reject(error);  // <-- Se rechaza la promesa y se pasa el motivo
           return resolve(results[0]) // <-- Se resuelve la promesa y se para el resultado
         })
-      })
+    })
 }
+
+module.exports = {
+    consultasDB
+};
