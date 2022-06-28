@@ -184,9 +184,8 @@ function clientLoaded(err, ari){
         datosUsuario = datosUsuario.split('*');
         cedulaU = datosUsuario[0];
         codigo = datosUsuario[1];
-        tipoCertificado = datosUsuario[2];
 
-        query = `INSERT INTO certificados (cedulaUsuario, tipoCertificado, estado, codigo) VALUES ('${cedulaU}', '1', '0','${codigo}')`;
+        query = 'INSERT INTO certificados (cedulaUsuario, tipoCertificado, estado, codigo) VALUES ('${cedulaU}', '1', '0','${codigo}')';
 
         await consultasDB(query)
           .then(async function () {
@@ -206,18 +205,16 @@ function clientLoaded(err, ari){
           colgarLLamada(incoming);
         }, 5000)
 
-
         query = '';
         cedulaU = '';
         fecha = '';
         datosUsuario = '';
-
-
         break;
 
       default:
-        datosCita += dato;
+        datosUsuario += dato;
         console.log('guardando datos de cita');
+        console.log(datosUsuario);
         break;
     }
   }
