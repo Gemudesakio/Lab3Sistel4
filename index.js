@@ -15,6 +15,7 @@ let fecha = '';
 let query = '';
 let resultado = '';
 let text = '';
+let tipoCertificado = '';
 
 const pathAudios = 'sound:/${__dirname}/certificados/audios/gsm/audio';
 
@@ -159,6 +160,7 @@ function clientLoaded(err, ari){
         break;
 
       case '*':
+        console.log('---------consulta estado certificado---------');
         cedula = '';
         incoming.removeListener('ChannelDtmfReceived', consultaEstado);
         incoming.on('ChannelDtmfReceived', consultaEstado)
@@ -184,8 +186,9 @@ function clientLoaded(err, ari){
         datosUsuario = datosUsuario.split('*');
         cedulaU = datosUsuario[0];
         codigo = datosUsuario[1];
+        tipoCertificado = datosUsuario[2];
 
-        query = 'INSERT INTO certificados (cedulaUsuario, tipoCertificado, estado, codigo) VALUES ('${cedulaU}', '1', '0','${codigo}')';
+        query = `INSERT INTO certificados (cedulaUsuario, tipoCertificado, estado, codigo) VALUES ('${cedulaU}', '${tipoCertificado}', '0','${codigo}')`;
 
         await consultasDB(query)
           .then(async function () {
@@ -207,7 +210,8 @@ function clientLoaded(err, ari){
 
         query = '';
         cedulaU = '';
-        fecha = '';
+        codigo = '';
+        tipoCertificado = '';
         datosUsuario = '';
         break;
 
@@ -223,7 +227,6 @@ function clientLoaded(err, ari){
     setTimeout(function () {
       incoming.hangup()
     }, 2000);
-    console.log('*****Se ha finalizado la aplicación*****', incoming.name);
   }
 
   ari.start('certificados');
