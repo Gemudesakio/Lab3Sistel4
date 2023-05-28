@@ -16,6 +16,7 @@ let query = '';
 let resultado = '';
 let text = '';
 let tipoCertificado = '';
+let codigo = '';
 
 const pathAudios = 'sound:/${__dirname}/certificados/audios/gsm/audio';
 
