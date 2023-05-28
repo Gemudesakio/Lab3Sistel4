@@ -116,7 +116,7 @@ function clientLoaded(err, ari){
 
     let dato = event.digit;
 
-    // Grabacion de peticion de cedula y marcacion de #
+    // Grabacion de peticion de cedula y marcacion de #.
     switch (dato) {
       case '#':
         incoming.removeListener('ChannelDtmfReceived', consultaEstado);
