@@ -6,7 +6,7 @@ const generarAudio = require('./funciones/gtts');
 const convertirAudio = require('./funciones/sox');
 const { connection, consultasDB } = require('./db');
 
-//--------------------------------------------------
+//---------------------------------------------------
 
 let cedula = '';
 let datosUsuario = '';
