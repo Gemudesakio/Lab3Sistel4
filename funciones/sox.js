@@ -1,3 +1,4 @@
+//de mp3 a gsm.
 const SoxCommand = require('sox-audio');
 
 const convertirAudio = () => {
