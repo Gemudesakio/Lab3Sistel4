@@ -1,3 +1,4 @@
+// de texto a audio.
 const gTTS = require('gtts');
 
 const generarAudio = ( texto ) => {
