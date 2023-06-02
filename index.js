@@ -6,7 +6,7 @@ const generarAudio = require('./funciones/gtts');
 const convertirAudio = require('./funciones/sox');
 const { connection, consultasDB } = require('./db');
 
-//-----------------------------------------------------
+//--------------------------------------------------
 
 let cedula = '';
 let datosUsuario = '';
@@ -18,8 +18,7 @@ let text = '';
 let tipoCertificado = '';
 let codigo = '';
 
-const pathAudios = 'sound:/${__dirname}/certificados/audios/gsm/audio';
-
+const pathAudios = `sound:/${__dirname}/certificados/audios/gsm/audio`;
 
 client.connect('http://localhost:8088', 'asterisk', 'asterisk', clientLoaded);
 
@@ -34,9 +33,12 @@ function clientLoaded(err, ari){
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
 
     incoming.answer(setTimeout((err) => {
-      play(incoming, 'sound:menuIntro')
-    }, 3000));
+      play(incoming, `sound:/${__dirname}/menuIntro`)
+    }, 2000));
 
+    console.log('---- Menu Inicio ---');
+    console.log('Ingrese 1 para solicitar su certificado estudiantil.');
+    console.log('Ingrese 2 para ver el estado de su solicitud.');
     incoming.on('ChannelDtmfReceived', introMenu);
 
     async function introMenu(event, channel) {
@@ -44,22 +46,29 @@ function clientLoaded(err, ari){
       const digit = event.digit;
 
       switch (digit) {
-        case '2':    //Consultar Estado Certificado
-          incoming.removeListener('ChannelDtmfReceived', introMenu);
-          play(channel, 'sound:consulta');
-          estado(event, incoming, channel)
-          break;
-
+        
         case '1': //Solicitar Certificado
           incoming.removeListener('ChannelDtmfReceived', introMenu);
-          play(channel, 'sound:datosCita');
+          console.log('- Solicita tu certificado -');
+          text='Por favor digite su cedula, codigo estudiantil y tipo de certificados seguidos se la tecla asterisco y finalice con la tecla numeral.';
+          await generarAudio(text);
+          await convertirAudio();
+          await play(incoming,pathAudios);
           certificado(event, incoming);
           break;
-       /* case '3': //Agente
-            incoming.removeListener('ChannelDtmfReceived', introMenu);
-            play(channel, 'sound:agent');
-            agente(event, incoming);
-        break;*/
+        
+        case '2':    //Consultar Estado Certificado
+          incoming.removeListener('ChannelDtmfReceived', introMenu);
+          console.log('- consulta el estado de tu solicitud -');
+          text='Por favor digite su cédula, seguida de la tecla numeral.';
+          await generarAudio(text);
+ 	        await convertirAudio();
+ 	        await play(incoming,pathAudios);
+          estado(event, incoming, channel);
+          break;
+
+      
+      
         default:
           console.log('default')
           text = 'opción no válida, inténtelo de nuevo'
