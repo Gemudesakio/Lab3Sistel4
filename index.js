@@ -44,7 +44,8 @@ function clientLoaded(err, ari){
     incoming.on('ChannelDtmfReceived', introMenu);
 
     async function introMenu(event, channel) {
-        incoming.removeListener('ChannelDtmfReceived', introMenu);
+      
+      incoming.removeListener('ChannelDtmfReceived', introMenu);
         console.log('- Menu Bienvenida -');
         text='Bienvenido a Unicauca, para solicitar su certificado marque 1, para consultar el estado de su solicitud marque 2, para comunicarse con un agente marque.';
         await generarAudio(text);
@@ -54,39 +55,39 @@ function clientLoaded(err, ari){
 
         const digit = event.digit;
         
-      switch (digit) {
-        
-        case '1': //Solicitar Certificado
-          incoming.removeListener('ChannelDtmfReceived', introMenu);
-          console.log('- Solicita tu certificado -');
-          setTimeout(() => console.log('Después del retraso'), 5000);
-          text='Por favor digite su cedula, codigo estudiantil y tipo de certificados seguidos se la tecla asterisco y finalice con la tecla numeral.';
-          await generarAudio(text);
-          await convertirAudio();
-          await play(incoming,pathAudios);
-          certificado(event, incoming);
-          break;
-        
-        case '2':    //Consultar Estado Certificado
-          incoming.removeListener('ChannelDtmfReceived', introMenu);
-          console.log('- consulta el estado de tu solicitud -');
-          text='Por favor digite su cédula, seguida de la tecla numeral.';
-          await generarAudio(text);
- 	        await convertirAudio();
- 	        await play(incoming,pathAudios);
-          estado(event, incoming, channel);
-          break;
+            switch (digit) {
+              
+              case '1': //Solicitar Certificado
+                incoming.removeListener('ChannelDtmfReceived', introMenu);
+                console.log('- Solicita tu certificado -');
+                setTimeout(() => console.log('Después del retraso'), 5000);
+                text='Por favor digite su cedula, codigo estudiantil y tipo de certificados seguidos se la tecla asterisco y finalice con la tecla numeral.';
+                await generarAudio(text);
+                await convertirAudio();
+                await play(incoming,pathAudios);
+                certificado(event, incoming);
+                break;
+              
+              case '2':    //Consultar Estado Certificado
+                incoming.removeListener('ChannelDtmfReceived', introMenu);
+                console.log('- consulta el estado de tu solicitud -');
+                text='Por favor digite su cédula, seguida de la tecla numeral.';
+                await generarAudio(text);
+                await convertirAudio();
+                await play(incoming,pathAudios);
+                estado(event, incoming, channel);
+                break;
 
-      
-      
-        default:
-          console.log('default')
-          text = 'opción no válida, inténtelo de nuevo'
-          await generarAudio(text);
-          await convertirAudio();
-          play(channel, pathAudios)
-          break;
-      }
+            
+            
+              default:
+                console.log('default')
+                text = 'opción no válida, inténtelo de nuevo'
+                await generarAudio(text);
+                await convertirAudio();
+                play(channel, pathAudios)
+                break;
+            }
     }
 
     function estado(event, incoming, channel) {
