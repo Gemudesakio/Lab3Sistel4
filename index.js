@@ -44,7 +44,8 @@ function clientLoaded(err, ari){
     incoming.on('ChannelDtmfReceived', introMenu);
 
     async function introMenu(event, channel) {
-      
+        incoming.removeListener('ChannelDtmfReceived', introMenu);
+        console.log('- Menu Bienvenida -');
         text='Bienvenido a Unicauca, para solicitar su certificado marque 1, para consultar el estado de su solicitud marque 2, para comunicarse con un agente marque.';
         await generarAudio(text);
         await convertirAudio();
