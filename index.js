@@ -36,6 +36,12 @@ function clientLoaded(err, ari){
       //play(incoming, `sound:/${__dirname}/menuIntro`)
    // }, 2000));
    
+   console.log('- Menu Bienvenida -');
+   text='Bienvenido a Unicauca, para solicitar su certificado marque 1, para consultar el estado de su solicitud marque 2, para comunicarse con un agente marque.';
+   generarAudio(text);
+   convertirAudio();
+   play(incoming,pathAudios);
+   setTimeout(() => console.log('Después del retraso'), 5000);
 
     console.log('---- Menu Inicio ---');
     console.log('Ingrese 1 para solicitar su certificado estudiantil.');
@@ -45,15 +51,9 @@ function clientLoaded(err, ari){
 
     async function introMenu(event, channel) {
       
-      incoming.removeListener('ChannelDtmfReceived', introMenu);
-        console.log('- Menu Bienvenida -');
-        text='Bienvenido a Unicauca, para solicitar su certificado marque 1, para consultar el estado de su solicitud marque 2, para comunicarse con un agente marque.';
-        await generarAudio(text);
-        await convertirAudio();
-        await play(incoming,pathAudios);
-        setTimeout(() => console.log('Después del retraso'), 5000);
 
-        const digit = event.digit;
+
+            const digit = event.digit;
         
             switch (digit) {
               
