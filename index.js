@@ -32,9 +32,10 @@ function clientLoaded(err, ari){
 
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
 
-    incoming.answer(setTimeout((err) => {
-      play(incoming, `sound:/${__dirname}/menuIntro`)
-    }, 2000));
+    //incoming.answer(setTimeout((err) => {
+      //play(incoming, `sound:/${__dirname}/menuIntro`)
+   // }, 2000));
+   
 
     console.log('---- Menu Inicio ---');
     console.log('Ingrese 1 para solicitar su certificado estudiantil.');
@@ -42,6 +43,10 @@ function clientLoaded(err, ari){
     incoming.on('ChannelDtmfReceived', introMenu);
 
     async function introMenu(event, channel) {
+      text='Bienvenido a Unicauca, para solicitar su certificado marque 1, para consultar el estado de su solicitud marque 2, para comunicarse con un agente marque 3.';
+          await generarAudio(text);
+          await convertirAudio();
+          await play(incoming,pathAudios);
 
       const digit = event.digit;
 
