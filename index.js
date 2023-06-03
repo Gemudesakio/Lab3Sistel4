@@ -35,32 +35,24 @@ function clientLoaded(err, ari){
     //incoming.answer(setTimeout((err) => {
       //play(incoming, `sound:/${__dirname}/menuIntro`)
    // }, 2000));
-   async function intro(event, channel) {
-   text='Bienvenido a Unicauca, para solicitar su certificado marque 1, para consultar el estado de su solicitud marque 2, para comunicarse con un agente marque.';
-    await generarAudio(text);
-    await convertirAudio();
-    await play(incoming,pathAudios);
-   }
+   
 
     console.log('---- Menu Inicio ---');
     console.log('Ingrese 1 para solicitar su certificado estudiantil.');
     console.log('Ingrese 2 para ver el estado de su solicitud.');
     console.log('Antes del retraso');
-
-    setTimeout(function() {
-
-      incoming.on('ChannelDtmfReceived', intro);
-      console.log();
-    }, 5000);
-
-    incoming.on('ChannelDtmfReceived', intro);
     incoming.on('ChannelDtmfReceived', introMenu);
 
     async function introMenu(event, channel) {
       
+        text='Bienvenido a Unicauca, para solicitar su certificado marque 1, para consultar el estado de su solicitud marque 2, para comunicarse con un agente marque.';
+        await generarAudio(text);
+        await convertirAudio();
+        await play(incoming,pathAudios);
+        setTimeout(() => console.log('Después del retraso'), 5000);
 
-      const digit = event.digit;
-
+        const digit = event.digit;
+        
       switch (digit) {
         
         case '1': //Solicitar Certificado
