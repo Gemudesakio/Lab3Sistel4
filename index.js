@@ -58,6 +58,7 @@ function clientLoaded(err, ari){
         case '1': //Solicitar Certificado
           incoming.removeListener('ChannelDtmfReceived', introMenu);
           console.log('- Solicita tu certificado -');
+          setTimeout(() => console.log('Después del retraso'), 5000);
           text='Por favor digite su cedula, codigo estudiantil y tipo de certificados seguidos se la tecla asterisco y finalice con la tecla numeral.';
           await generarAudio(text);
           await convertirAudio();
