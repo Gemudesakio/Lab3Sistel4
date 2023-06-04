@@ -13,7 +13,7 @@ let datosUsuario = '';
 let cedulaU = '';
 let fecha = '';
 let query = '';
-let resultado = '';
+let estado = '';
 let text = '';
 let tipoCertificado = '';
 let codigo = '';
@@ -156,22 +156,23 @@ function clientLoaded(err, ari){
         incoming.removeListener('ChannelDtmfReceived', consultaEstado);
         query = `SELECT estado FROM certificados WHERE cedulaUsuario = ${cedula} LIMIT 1`
 
-        resultado = await consultasDB(query)
+        estado = await consultasDB(query)
           .then(function (resultado) {
 
             if(resultado.length!=0){
               console.log('Resultado Encontrado');
-              switch (resultado.resultado) {
+              console.log(estado);
+              switch (estado) {
                 case '0':
-                  text = `${resultado.nombre} solicitud pendiente`
+                  text = `${estado} solicitud pendiente`
                   break;
   
                 case '1':
-                  text = `${resultado.nombre} certificado generado`
+                  text = `${estado} certificado generado`
                   break;
   
                 case '2':
-                  text = `${resultado.nombre} solicitud rechazada`
+                  text = `${estado} solicitud rechazada`
                   break;
   
                 default:
