@@ -47,10 +47,10 @@ function clientLoaded(err, ari){
       console.log('Antes del retraso');
       incoming.on('ChannelDtmfReceived', introMenu);
         // Evaluar la opción seleccionada utilizando una estructura switch-case\
-      
+      } while (digit !== '0');
       async function introMenu(event, channel) {
-        const selectedOption = event.digit;
-          switch (selectedOption) {
+        const  digit = event.digit;
+          switch (digit) {
             case 1:
               console.log('Ha seleccionado la Opción 1');
               // Agrega el código que deseas ejecutar para la opción 1
@@ -63,7 +63,7 @@ function clientLoaded(err, ari){
                 await play(incoming,pathAudios);
                 certificado(event, incoming);
               // Si deseas volver al inicio desde la opción 1, puedes establecer la opción en 0
-                digit = selectedOption;
+                
               break;
             case 2:
               console.log('Ha seleccionado la Opción 2');
@@ -76,11 +76,11 @@ function clientLoaded(err, ari){
                 await play(incoming,pathAudios);
                 estado(event, incoming, channel);
               // Si deseas volver al inicio desde la opción 2, puedes establecer la opción en 0
-                digit = selectedOption;
+                
               break;
             case 0:
               console.log('Volviendo al inicio...');
-              digit = selectedOption;
+              
               break;
             default:
               console.log('Opción no válida. Inténtelo de nuevo.');
@@ -90,8 +90,8 @@ function clientLoaded(err, ari){
                 play(channel, pathAudios)
           }
         }
-      console.log(); // Imprimir una línea en blanco para separar las iteraciones
-    } while (digit === '0');
+      
+   
 
     
     function estado(event, incoming, channel) {
