@@ -18,6 +18,7 @@ let text = '';
 let tipoCertificado = '';
 let codigo = '';
 let prueba ='12345';
+let estado = '';
 
 const pathAudios = `sound:/${__dirname}/certificados/audios/gsm/audio`;
 
