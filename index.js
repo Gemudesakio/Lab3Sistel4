@@ -32,10 +32,8 @@ function clientLoaded(err, ari){
 
     
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
-
-    let digit;
-
-    do {
+    const  digit = '';
+     do {
       // Mostrar el menú
       incoming.answer(setTimeout((err) => {
         play(incoming, `sound:/${__dirname}/menuIntro`)
