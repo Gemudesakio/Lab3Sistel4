@@ -43,7 +43,6 @@ function clientLoaded(err, ari){
       console.log('---- Menu Inicio ---');
       console.log('Ingrese 1 para solicitar su certificado estudiantil.');
       console.log('Ingrese 2 para ver el estado de su solicitud.');
-      console.log('Antes del retraso');
       incoming.on('ChannelDtmfReceived',  introMenu);
     
     }
@@ -59,7 +58,6 @@ function clientLoaded(err, ari){
               // Agrega el código que deseas ejecutar para la opción 1
               incoming.removeListener('ChannelDtmfReceived', introMenu);
                 console.log('- Solicita tu certificado -');
-                setTimeout(() => console.log('Después del retraso'), 5000);
                 text='Por favor digite su cedula, codigo estudiantil y tipo de certificados seguidos se la tecla asterisco y finalice con la tecla numeral.';
                 await generarAudio(text);
                 await convertirAudio();
@@ -163,15 +161,15 @@ function clientLoaded(err, ari){
             if (!resultado) return
 
             switch (resultado.resultado) {
-              case 0:
+              case '0':
                 text = `${resultado.nombre} solicitud pendiente`
                 break;
 
-              case 1:
+              case '1':
                 text = `${resultado.nombre} certificado generado`
                 break;
 
-              case 2:
+              case '2':
                 text = `${resultado.nombre} solicitud rechazada`
                 break;
 
