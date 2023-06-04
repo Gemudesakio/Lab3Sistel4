@@ -47,7 +47,7 @@ function clientLoaded(err, ari){
 
       
         // Evaluar la opción seleccionada utilizando una estructura switch-case\
-      } while (digit === '0');
+      
       async function introMenu(event, channel) {
         digit = event.digit;
        
@@ -92,7 +92,7 @@ function clientLoaded(err, ari){
           }
           return digit 
         }
-      
+      } while (digit === '0');
    
 
     
