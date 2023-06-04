@@ -46,11 +46,7 @@ function clientLoaded(err, ari){
       console.log('Ingrese 2 para ver el estado de su solicitud.');
       console.log('Antes del retraso');
       incoming.on('ChannelDtmfReceived', introMenu);
-    
-      // Leer la opción seleccionada
-      opcion = parseInt(prompt('Seleccione una opción:'));
-      
-      // Evaluar la opción seleccionada utilizando una estructura switch-case\
+        // Evaluar la opción seleccionada utilizando una estructura switch-case\
       async function introMenu(event, channel) {
         const digit = event.digit;
           switch (digit) {
