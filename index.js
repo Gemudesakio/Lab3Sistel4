@@ -32,18 +32,6 @@ function clientLoaded(err, ari){
 
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
 
-    incoming.answer(setTimeout((err) => {
-      console.log('- Menu Bienvenida -');
-      text='Bienvenido a Unicauca, para solicitar su certificado marque 1, para consultar el estado de su solicitud marque 2, para comunicarse con un agente marque.';
-      generarAudio(text);
-      convertirAudio();
-      play(incoming, `sound:/${__dirname}/certificados/audios/gsm/audio`)
-    }, 2000));
-   
-   
-   play(incoming,pathAudios);
-   
-
     console.log('---- Menu Inicio ---');
     console.log('Ingrese 1 para solicitar su certificado estudiantil.');
     console.log('Ingrese 2 para ver el estado de su solicitud.');
@@ -58,6 +46,18 @@ function clientLoaded(err, ari){
         
             switch (digit) {
               
+
+              case '0':
+                
+              incoming.removeListener('ChannelDtmfReceived', introMenu);
+              console.log('- Solicita tu certificado -');
+              setTimeout(() => console.log('Después del retraso'), 5000);
+              text='Bienvenido a Unicauca';
+              await generarAudio(text);
+              await convertirAudio();
+              await play(incoming,pathAudios);
+              
+                break;
               case '1': //Solicitar Certificado
                 incoming.removeListener('ChannelDtmfReceived', introMenu);
                 console.log('- Solicita tu certificado -');
