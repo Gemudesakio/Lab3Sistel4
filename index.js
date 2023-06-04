@@ -33,7 +33,7 @@ function clientLoaded(err, ari){
     
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
 
-    const digit = event.digit;
+    let digit;
 
     do {
       // Mostrar el menú
@@ -49,7 +49,7 @@ function clientLoaded(err, ari){
         // Evaluar la opción seleccionada utilizando una estructura switch-case\
       
       async function introMenu(event, channel) {
-         const digit = event.digit;
+          digit = event.digit;
           switch (digit) {
             case 1:
               console.log('Ha seleccionado la Opción 1');
