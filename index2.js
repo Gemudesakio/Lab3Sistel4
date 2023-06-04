@@ -32,7 +32,7 @@ function clientLoaded(err, ari){
 
     
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
-    const  bucle = null;
+    let  bucle = null;
      do {
       // Mostrar el menú
       incoming.answer(setTimeout((err) => {
@@ -47,9 +47,9 @@ function clientLoaded(err, ari){
 
       
         // Evaluar la opción seleccionada utilizando una estructura switch-case\
-      } while (bucle !== '0');
+      } while (bucle === '0');
       async function introMenu(event, channel) {
-        const  digit = event.digit;
+        digit = event.digit;
         bucle = digit;
           switch (digit) {
             case 1:
