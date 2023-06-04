@@ -33,7 +33,7 @@ function clientLoaded(err, ari){
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
 
     incoming.answer(setTimeout((err) => {
-      play(incoming, `sound:/${__dirname}/menuIntro`)
+      play.once(incoming, `sound:/${__dirname}/menuIntro`)
     }, 2000));
    
       console.log('---- Menu Inicio ---');
@@ -126,6 +126,53 @@ function clientLoaded(err, ari){
     channel.play({ media: sound }, playback, function (err, playback) { });
   }
 
+  async function solicitudCertificado(event, incoming) {
+
+    let dato = event.digit;
+
+    switch (dato) {
+      case '#':
+        incoming.removeListener('ChannelDtmfReceived', solicitudCertificado);
+
+        datosUsuario = datosUsuario.split('*');
+        cedulaU = datosUsuario[0];
+        codigo = datosUsuario[1];
+        tipoCertificado = datosUsuario[2];
+
+        query = `INSERT INTO certificados (cedulaUsuario, tipoCertificado, estado, codigo) VALUES ('${cedulaU}', '${tipoCertificado}', '0','${codigo}')`;
+
+        await consultasDB(query)
+          .then(async function () {
+
+            text = 'Su certificado ha sido solicitado correctamente.'
+          })
+          .catch(function () {
+            text = 'No se ha podido generar certificado, inténtelo de nuevo'
+          });
+
+        await generarAudio(text);
+        await convertirAudio()
+        await play(incoming, pathAudios);
+
+
+        await setTimeout(function () {
+          colgarLLamada(incoming);
+        }, 5000)
+
+        query = '';
+        cedulaU = '';
+        codigo = '';
+        tipoCertificado = '';
+        datosUsuario = '';
+        break;
+
+      default:
+        datosUsuario += dato;
+        console.log('guardando datos de cita');
+        console.log(datosUsuario);
+        break;
+    }
+  }
   async function consultaEstado(event, incoming) {
 
     let dato = event.digit;
@@ -184,55 +231,6 @@ function clientLoaded(err, ari){
         cedula += dato;
         console.log('guardando cedula');
         console.log(cedula);
-        break;
-    }
-  }
-
-
-  async function solicitudCertificado(event, incoming) {
-
-    let dato = event.digit;
-
-    switch (dato) {
-      case '#':
-        incoming.removeListener('ChannelDtmfReceived', solicitudCertificado);
-
-        datosUsuario = datosUsuario.split('*');
-        cedulaU = datosUsuario[0];
-        codigo = datosUsuario[1];
-        tipoCertificado = datosUsuario[2];
-
-        query = `INSERT INTO certificados (cedulaUsuario, tipoCertificado, estado, codigo) VALUES ('${cedulaU}', '${tipoCertificado}', '0','${codigo}')`;
-
-        await consultasDB(query)
-          .then(async function () {
-
-            text = 'Su certificado ha sido solicitado correctamente.'
-          })
-          .catch(function () {
-            text = 'No se ha podido generar certificado, inténtelo de nuevo'
-          });
-
-        await generarAudio(text);
-        await convertirAudio()
-        await play(incoming, pathAudios);
-
-
-        await setTimeout(function () {
-          colgarLLamada(incoming);
-        }, 5000)
-
-        query = '';
-        cedulaU = '';
-        codigo = '';
-        tipoCertificado = '';
-        datosUsuario = '';
-        break;
-
-      default:
-        datosUsuario += dato;
-        console.log('guardando datos de cita');
-        console.log(datosUsuario);
         break;
     }
   }
