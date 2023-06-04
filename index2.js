@@ -32,7 +32,7 @@ function clientLoaded(err, ari){
 
     
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
-    let  bucle = null;
+    let  digit = null;
      do {
       // Mostrar el menú
       incoming.answer(setTimeout((err) => {
@@ -50,7 +50,7 @@ function clientLoaded(err, ari){
       } while (bucle === '0');
       async function introMenu(event, channel) {
         digit = event.digit;
-        bucle = digit;
+       
           switch (digit) {
             case 1:
               console.log('Ha seleccionado la Opción 1');
