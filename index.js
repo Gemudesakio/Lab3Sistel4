@@ -32,16 +32,17 @@ function clientLoaded(err, ari){
 
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
 
-    //incoming.answer(setTimeout((err) => {
-      //play(incoming, `sound:/${__dirname}/menuIntro`)
-   // }, 2000));
+    incoming.answer(setTimeout((err) => {
+      console.log('- Menu Bienvenida -');
+      text='Bienvenido a Unicauca, para solicitar su certificado marque 1, para consultar el estado de su solicitud marque 2, para comunicarse con un agente marque.';
+      generarAudio(text);
+      convertirAudio();
+      play(incoming, `sound:/${__dirname}/certificados/audios/gsm/audio`)
+    }, 2000));
    
-   console.log('- Menu Bienvenida -');
-   text='Bienvenido a Unicauca, para solicitar su certificado marque 1, para consultar el estado de su solicitud marque 2, para comunicarse con un agente marque.';
-   generarAudio(text);
-   convertirAudio();
+   
    play(incoming,pathAudios);
-   setTimeout(() => console.log('Después del retraso'), 5000);
+   
 
     console.log('---- Menu Inicio ---');
     console.log('Ingrese 1 para solicitar su certificado estudiantil.');
