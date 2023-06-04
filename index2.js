@@ -77,6 +77,13 @@ function clientLoaded(err, ari){
                 
               break;
             case '2':
+              if (menuPlayback) {
+                menuPlayback.stop(function (err) {
+                  if (err) {
+                    console.error('Error al detener la reproducción de menuIntro:', err);
+                  }
+                });
+              }
               console.log('Ha seleccionado la Opción 2');
               // Agrega el código que deseas ejecutar para la opción 2
               incoming.removeListener('ChannelDtmfReceived', introMenu);
@@ -90,10 +97,24 @@ function clientLoaded(err, ari){
                 
               break;
             case '0':
+              if (menuPlayback) {
+                menuPlayback.stop(function (err) {
+                  if (err) {
+                    console.error('Error al detener la reproducción de menuIntro:', err);
+                  }
+                });
+              }
               console.log('Volviendo al inicio...');
               
               break;
             default:
+              if (menuPlayback) {
+                menuPlayback.stop(function (err) {
+                  if (err) {
+                    console.error('Error al detener la reproducción de menuIntro:', err);
+                  }
+                });
+              }
               console.log('Opción no válida. Inténtelo de nuevo.');
                 text = 'opción no válida, inténtelo de nuevo'
                 await generarAudio(text);
