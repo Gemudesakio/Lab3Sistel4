@@ -47,7 +47,7 @@ function clientLoaded(err, ari){
 
       
         // Evaluar la opción seleccionada utilizando una estructura switch-case\
-      
+        introMenu=digit;
       async function introMenu(event, channel) {
         digit = event.digit;
        
@@ -90,8 +90,9 @@ function clientLoaded(err, ari){
                 await convertirAudio();
                 play(channel, pathAudios)
           }
-          return digit 
+          return digit
         }
+        introMenu=digit;
       } while (digit === '0');
    
 
