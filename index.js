@@ -50,7 +50,7 @@ function clientLoaded(err, ari){
               
 
 
-              case '1': //Solicitar Certificado
+              case '1': //Solicitar Certificado.
                 incoming.removeListener('ChannelDtmfReceived', introMenu);
                 console.log('- Solicita tu certificado -');
                 setTimeout(() => console.log('Después del retraso'), 5000);
