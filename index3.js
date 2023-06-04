@@ -322,25 +322,27 @@ function clientLoaded(err, ari){
         break;
     }
   }
-    function llamarCallCenter(incoming) {
-      console.log('Llamando al servicio de Call Center...');
-      incoming.originate({
-        endpoint: 'PJSIP/*611', // Cambia el valor de '700' por la extensión correcta del Call Center
-        app: 'callcenter',
-        appArgs: '*611', // Cambia el valor de '700' por la extensión correcta del Call Center
-        callerId: 'MiAplicacion'
-      }, function (err, channel) {
-        if (err) {
-          console.error('Error al llamar al servicio de Call Center:', err);
-          // Realiza alguna acción en caso de error al llamar al Call Center
-          text = 'No tenemos agentes disponibles en este momento, intente mas tarde.'
-        } else {
-          console.log('Llamada realizada al servicio de Call Center');
-          // Realiza alguna acción después de llamar al Call Center
-          text = 'gracias por comunicarte con nosotros, que tengas un buen dia.'
-        }
-      });
-    }
+  function llamarCallCenter(incoming) {
+    console.log('Llamando al servicio de Call Center...');
+    incoming.originate({
+      endpoint: 'SIP/ext101', // Cambia el valor de '700' por la extensión correcta del Call Center
+      context: '', // Cambia 'my-dialplan' por el nombre del contexto de tu dialplan
+      context: '', // Cambia 'my-dialplan' por el nombre del contexto de tu dialplan
+      extension: 'ext101', // Cambia '100' por la extensión en la que deseas realizar la llamada
+      priority: 1,
+      callerId: 'MiAplicacion'
+    }, function (err, channel) {
+      if (err) {
+        console.error('Error al llamar al servicio de Call Center:', err);
+        // Realiza alguna acción en caso de error al llamar al Call Center
+        text = 'No ha sido posible contactar un agente, intente mas tarde'
+      } else {
+        console.log('Llamada realizada al servicio de Call Center');
+        // Realiza alguna acción después de llamar al Call Center
+        text = 'gracias por comunicarte con nosotros, hasta pronto'
+      }
+    });
+  }
   
   function colgarLLamada(incoming) {
     setTimeout(function () {
@@ -351,3 +353,5 @@ function clientLoaded(err, ari){
   ari.start('certificados');
 
 }
+
+
