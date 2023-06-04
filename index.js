@@ -32,7 +32,7 @@ function clientLoaded(err, ari){
 
     
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
-    const  bucle = '';
+    const  bucle = null;
      do {
       // Mostrar el menú
       incoming.answer(setTimeout((err) => {
@@ -43,13 +43,14 @@ function clientLoaded(err, ari){
       console.log('Ingrese 1 para solicitar su certificado estudiantil.');
       console.log('Ingrese 2 para ver el estado de su solicitud.');
       console.log('Antes del retraso');
-      incoming.on('ChannelDtmfReceived', bucle=introMenu);
+      incoming.on('ChannelDtmfReceived',  introMenu);
 
       
         // Evaluar la opción seleccionada utilizando una estructura switch-case\
       } while (bucle === '0');
       async function introMenu(event, channel) {
         const  digit = event.digit;
+        bucle = digit;
           switch (digit) {
             case 1:
               console.log('Ha seleccionado la Opción 1');
