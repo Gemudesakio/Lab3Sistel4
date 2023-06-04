@@ -33,7 +33,7 @@ function clientLoaded(err, ari){
     
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
 
-    let digit = '0';
+    let digit;
 
     do {
       // Mostrar el menú
