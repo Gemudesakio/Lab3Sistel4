@@ -17,7 +17,6 @@ let resultado = '';
 let text = '';
 let tipoCertificado = '';
 let codigo = '';
-let prueba ='12345';
 let estado = '';
 
 const pathAudios = `sound:/${__dirname}/certificados/audios/gsm/audio`;
@@ -164,38 +163,30 @@ function clientLoaded(err, ari){
 
             if(resultado.length!=0){
               console.log('Resultado Encontrado');
-              console.log(resultado);
               estado = resultado[0].estado;
-              console.log(prueba);
-              console.log(estado);
               switch (estado) {
                 case 0:
                   console.log('solicitud pendiente');
-                text = `${estado} solicitud pendiente`
+                text = `su solicitud aun esta pendiente por aprobar`
                   break;
   
                 case 1:
                   console.log('certificado generado');
-                text = `${estado} certificado generado`
+                text = `su certificado ha sido generado`
                   break;
                
   
                 case 2:
                   console.log('solicitud rechazada');
-                 text = `${estado} solicitud rechazada`
+                 text = `${estado} su solicitud ha sido rechazada`
                   break;
   
                 default:
                   break;
               }
-            }else{
-                        
-              console.log('Resultado vacío');
-              console.log('Resultado Encontrado');
-              console.log(resultado);
-              estado = resultado[0].estado;
-              console.log(prueba);
-              console.log(estado);
+            }else{       
+              text = `Usted no ha registrado ninguna solicitud`
+
             }
 
           
