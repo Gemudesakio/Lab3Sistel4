@@ -168,7 +168,7 @@ function clientLoaded(err, ari){
                   //text = `${estado} solicitud pendiente`
                   break;
   
-                case 1:
+                case 'estado: 1':
                   console.log('certificado generado');
                   //text = `${estado} certificado generado`
                   break;
