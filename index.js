@@ -189,6 +189,7 @@ function clientLoaded(err, ari){
             
             if(resultado.length!=0){
               console.log('Resultado Encontrado');
+              console.log(resultado);
               switch (resultado.resultado) {
                 case '0':
                   text = `${resultado.nombre} solicitud pendiente`
