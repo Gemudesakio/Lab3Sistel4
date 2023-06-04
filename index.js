@@ -142,15 +142,15 @@ function clientLoaded(err, ari){
             if (!resultado) return
 
             switch (resultado.resultado) {
-              case 0:
+              case '0':
                 text = `${resultado.nombre} solicitud pendiente`
                 break;
 
-              case 1:
+              case '1':
                 text = `${resultado.nombre} certificado generado`
                 break;
 
-              case 2:
+              case '2':
                 text = `${resultado.nombre} solicitud rechazada`
                 break;
 
