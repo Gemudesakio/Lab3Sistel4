@@ -47,7 +47,7 @@ function clientLoaded(err, ari){
 
       
         // Evaluar la opción seleccionada utilizando una estructura switch-case\
-      } while (bucle === '0');
+      } while (bucle !== '0');
       async function introMenu(event, channel) {
         const  digit = event.digit;
         bucle = digit;
