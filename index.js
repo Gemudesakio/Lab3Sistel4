@@ -32,7 +32,6 @@ function clientLoaded(err, ari){
 
     
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
-//*******************************************************************************************************    
     
 
     do {
@@ -90,7 +89,7 @@ function clientLoaded(err, ari){
         }
       console.log(); // Imprimir una línea en blanco para separar las iteraciones
     } while (opcion === 0);
-    //*************************************************************************************************
+
     
     function estado(event, incoming, channel) {
       cedula = '';
