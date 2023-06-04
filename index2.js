@@ -108,14 +108,7 @@ function clientLoaded(err, ari){
               
               break;
             default:
-              if (menuPlayback) {
-                menuPlayback.stop(function (err) {
-                  if (err) {
-                    console.error('Error al detener la reproducción de menuIntro:', err);
-                  }
-                });
-              }
-              console.log('Opción no válida. Inténtelo de nuevo.');
+                console.log('Opción no válida. Inténtelo de nuevo.');
                 text = 'opción no válida, inténtelo de nuevo'
                 await generarAudio(text);
                 await convertirAudio();
