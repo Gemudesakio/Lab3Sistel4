@@ -171,18 +171,18 @@ function clientLoaded(err, ari){
               switch (estado) {
                 case 0:
                   console.log('solicitud pendiente');
-                  //text = `${estado} solicitud pendiente`
+                text = `${estado} solicitud pendiente`
                   break;
   
                 case 1:
                   console.log('certificado generado');
-                  //text = `${estado} certificado generado`
+                text = `${estado} certificado generado`
                   break;
                
   
                 case 2:
                   console.log('solicitud rechazada');
-                //  text = `${estado} solicitud rechazada`
+                 text = `${estado} solicitud rechazada`
                   break;
   
                 default:
