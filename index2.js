@@ -184,6 +184,8 @@ function clientLoaded(err, ari){
             }else{
                         
               console.log('Resultado vacío');
+              console.log('Resultado Encontrado');
+              console.log(resultado);
             }
 
           
