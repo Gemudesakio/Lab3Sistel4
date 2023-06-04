@@ -163,17 +163,17 @@ function clientLoaded(err, ari){
               console.log('Resultado Encontrado');
               console.log(resultado);
               switch (resultado) {
-                case '0':
+                case 0:
                   console.log('solicitud pendiente');
                   //text = `${estado} solicitud pendiente`
                   break;
   
-                case '1':
+                case 1:
                   console.log('certificado generado');
                   //text = `${estado} certificado generado`
                   break;
   
-                case '2':
+                case 2:
                   console.log('solicitud rechazada');
                 //  text = `${estado} solicitud rechazada`
                   break;
