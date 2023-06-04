@@ -32,7 +32,7 @@ function clientLoaded(err, ari){
 
     
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
-    
+
     const digit = event.digit;
 
     do {
@@ -49,7 +49,7 @@ function clientLoaded(err, ari){
         // Evaluar la opción seleccionada utilizando una estructura switch-case\
       
       async function introMenu(event, channel) {
-        
+         const digit = event.digit;
           switch (digit) {
             case 1:
               console.log('Ha seleccionado la Opción 1');
@@ -63,7 +63,7 @@ function clientLoaded(err, ari){
                 await play(incoming,pathAudios);
                 certificado(event, incoming);
               // Si deseas volver al inicio desde la opción 1, puedes establecer la opción en 0
-              digit = 0;
+              
               break;
             case 2:
               console.log('Ha seleccionado la Opción 2');
@@ -76,7 +76,7 @@ function clientLoaded(err, ari){
                 await play(incoming,pathAudios);
                 estado(event, incoming, channel);
               // Si deseas volver al inicio desde la opción 2, puedes establecer la opción en 0
-              digit = 0;
+            
               break;
             case 0:
               console.log('Volviendo al inicio...');
