@@ -33,6 +33,7 @@ function clientLoaded(err, ari){
     
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
     
+    const digit = event.digit;
 
     do {
       // Mostrar el menú
@@ -46,7 +47,7 @@ function clientLoaded(err, ari){
       console.log('Antes del retraso');
       incoming.on('ChannelDtmfReceived', introMenu);
         // Evaluar la opción seleccionada utilizando una estructura switch-case\
-      const digit = event.digit;
+      
       async function introMenu(event, channel) {
         
           switch (digit) {
