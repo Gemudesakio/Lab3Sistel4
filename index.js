@@ -32,6 +32,10 @@ function clientLoaded(err, ari){
 
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
 
+    incoming.answer(setTimeout((err) => {
+      play(incoming, `sound:/${__dirname}/menuIntro`)
+    }, 2000));
+   
     console.log('---- Menu Inicio ---');
     console.log('Ingrese 1 para solicitar su certificado estudiantil.');
     console.log('Ingrese 2 para ver el estado de su solicitud.');
@@ -40,24 +44,12 @@ function clientLoaded(err, ari){
 
     async function introMenu(event, channel) {
       
-
-
-            const digit = event.digit;
+      const digit = event.digit;
         
             switch (digit) {
               
 
-              case '0':
-                
-              incoming.removeListener('ChannelDtmfReceived', introMenu);
-              console.log('- Solicita tu certificado -');
-              setTimeout(() => console.log('Después del retraso'), 5000);
-              text='Bienvenido a Unicauca';
-              await generarAudio(text);
-              await convertirAudio();
-              await play(incoming,pathAudios);
-              
-                break;
+
               case '1': //Solicitar Certificado
                 incoming.removeListener('ChannelDtmfReceived', introMenu);
                 console.log('- Solicita tu certificado -');
