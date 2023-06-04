@@ -45,7 +45,7 @@ function clientLoaded(err, ari){
       console.log('Antes del retraso');
       incoming.on('ChannelDtmfReceived', introMenu);
         // Evaluar la opción seleccionada utilizando una estructura switch-case\
-      } while (digit !== '0');
+      } while (digit === '0');
       async function introMenu(event, channel) {
         const  digit = event.digit;
           switch (digit) {
