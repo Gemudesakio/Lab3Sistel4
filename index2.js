@@ -167,7 +167,7 @@ function clientLoaded(err, ari){
               estado = resultado[0].estado;
               console.log(prueba);
               switch (estado) {
-                case 0:
+                case '0':
                   console.log('solicitud pendiente');
                   //text = `${estado} solicitud pendiente`
                   break;
@@ -176,12 +176,9 @@ function clientLoaded(err, ari){
                   console.log('certificado generado');
                   //text = `${estado} certificado generado`
                   break;
-                case 1:
-                  console.log('certificado generado sin comitas');
-                  //text = `${estado} certificado generado`
-                  break;
+               
   
-                case 2:
+                case '2':
                   console.log('solicitud rechazada');
                 //  text = `${estado} solicitud rechazada`
                   break;
