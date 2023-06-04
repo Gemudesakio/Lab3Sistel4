@@ -200,7 +200,7 @@ function clientLoaded(err, ari){
 
           
           })
-          .catch(text = 'La consulta realizada ha sido fallida, intente de nuevo')
+          //.catch(text = 'La consulta realizada ha sido fallida, intente de nuevo')
 
         await generarAudio(text);
         await convertirAudio()
