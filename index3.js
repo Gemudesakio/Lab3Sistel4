@@ -326,8 +326,7 @@ function clientLoaded(err, ari){
     console.log('Llamando al servicio de Call Center...');
     incoming.originate({
       endpoint: 'SIP/ext101', // Cambia el valor de '700' por la extensión correcta del Call Center
-      context: '', // Cambia 'my-dialplan' por el nombre del contexto de tu dialplan
-      context: '', // Cambia 'my-dialplan' por el nombre del contexto de tu dialplan
+      context: 'netronix', // Cambia 'my-dialplan' por el nombre del contexto de tu dialplan
       extension: 'ext101', // Cambia '100' por la extensión en la que deseas realizar la llamada
       priority: 1,
       callerId: 'MiAplicacion'
@@ -339,7 +338,7 @@ function clientLoaded(err, ari){
       } else {
         console.log('Llamada realizada al servicio de Call Center');
         // Realiza alguna acción después de llamar al Call Center
-        text = 'gracias por comunicarte con nosotros, hasta pronto'
+        text = 'gracias por comunicarte con nosotros,hasta pronto'
       }
     });
   }
@@ -353,5 +352,8 @@ function clientLoaded(err, ari){
   ari.start('certificados');
 
 }
+
+
+
 
 
