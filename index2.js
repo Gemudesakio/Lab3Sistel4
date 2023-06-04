@@ -92,8 +92,12 @@ function clientLoaded(err, ari){
                 await convertirAudio();
                 play(channel, pathAudios)
           }
-          if (digit === '0') {
+          //****
+          if (digit !== '0') {
             mostrarMenu();
+            digit = null;
+
+          //***
         }
        
      
