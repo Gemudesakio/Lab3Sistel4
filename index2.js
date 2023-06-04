@@ -159,24 +159,30 @@ function clientLoaded(err, ari){
         resultado = await consultasDB(query)
           .then(function (resultado) {
 
-            if (!resultado) return
-
-            switch (resultado.resultado) {
-              case 0:
-                text = `${resultado.nombre} solicitud pendiente`
-                break;
-
-              case 1:
-                text = `${resultado.nombre} certificado generado`
-                break;
-
-              case 2:
-                text = `${resultado.nombre} solicitud rechazada`
-                break;
-
-              default:
-                break;
+            if(resultado.length!=0){
+              console.log('Resultado Encontrado');
+              switch (resultado.resultado) {
+                case '0':
+                  text = `${resultado.nombre} solicitud pendiente`
+                  break;
+  
+                case '1':
+                  text = `${resultado.nombre} certificado generado`
+                  break;
+  
+                case '2':
+                  text = `${resultado.nombre} solicitud rechazada`
+                  break;
+  
+                default:
+                  break;
+              }
+            }else{
+                        
+              console.log('Resultado vacío');
             }
+
+          
           })
           .catch(text = 'La consulta realizada ha sido fallida, intente de nuevo')
 
@@ -185,7 +191,7 @@ function clientLoaded(err, ari){
 
         query = '';
         await play(incoming, pathAudios);
-        incoming.removeListener('ChannelDtmfReceived', solicitudCertificado);
+        incoming.removeListener('ChannelDtmfReceived', consultaEstado);
 
         setTimeout(function () {
           colgarLLamada(incoming);
