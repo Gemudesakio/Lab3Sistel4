@@ -158,20 +158,26 @@ function clientLoaded(err, ari){
         query = `SELECT estado FROM certificados WHERE cedulaUsuario = ${cedula} LIMIT 1`
         
         resultado = await consultasDB(query)
+        
           .then(function (resultado) {
 
             if(resultado.length!=0){
               console.log('Resultado Encontrado');
               console.log(resultado);
+              estado = resultado[0].estado;
               console.log(prueba);
-              switch (resultado) {
+              switch (estado) {
                 case 0:
                   console.log('solicitud pendiente');
                   //text = `${estado} solicitud pendiente`
                   break;
   
-                case 'estado: 1':
+                case '1':
                   console.log('certificado generado');
+                  //text = `${estado} certificado generado`
+                  break;
+                case 1:
+                  console.log('certificado generado sin comitas');
                   //text = `${estado} certificado generado`
                   break;
   
