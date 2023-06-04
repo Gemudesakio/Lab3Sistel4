@@ -168,7 +168,7 @@ function clientLoaded(err, ari){
 
       default:
         datosUsuario += dato;
-        console.log('guardando datos de cita');
+        console.log('guardando cedula');
         console.log(datosUsuario);
         break;
     }
@@ -212,7 +212,7 @@ function clientLoaded(err, ari){
 
         query = '';
         await play(incoming, pathAudios);
-        incoming.removeListener('ChannelDtmfReceived', agendarCita);
+        incoming.removeListener('ChannelDtmfReceived', consultaEstado);
 
         setTimeout(function () {
           colgarLLamada(incoming);
