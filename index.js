@@ -43,8 +43,9 @@ function clientLoaded(err, ari){
       console.log('Ingrese 1 para solicitar su certificado estudiantil.');
       console.log('Ingrese 2 para ver el estado de su solicitud.');
       console.log('Antes del retraso');
-      incoming.on('ChannelDtmfReceived', introMenu);
-      bucle = degit;
+      incoming.on('ChannelDtmfReceived', bucle=introMenu);
+
+      
         // Evaluar la opción seleccionada utilizando una estructura switch-case\
       } while (bucle === '0');
       async function introMenu(event, channel) {
@@ -88,6 +89,7 @@ function clientLoaded(err, ari){
                 await convertirAudio();
                 play(channel, pathAudios)
           }
+          return digit 
         }
       
    
