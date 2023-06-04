@@ -58,6 +58,7 @@ function clientLoaded(err, ari){
               // Agrega el código que deseas ejecutar para la opción 1
               incoming.removeListener('ChannelDtmfReceived', introMenu);
                 console.log('- Solicita tu certificado -');
+              
                 text='Por favor digite su cedula, codigo estudiantil y tipo de certificados seguidos se la tecla asterisco y finalice con la tecla numeral.';
                 await generarAudio(text);
                 await convertirAudio();
@@ -97,7 +98,7 @@ function clientLoaded(err, ari){
 
           //***
         }
-       
+      } 
      
    
 
