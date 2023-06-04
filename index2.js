@@ -91,12 +91,12 @@ function clientLoaded(err, ari){
                 await convertirAudio();
                 play(channel, pathAudios)
           }
-          //****
-          if (digit !== '0') {
+          
+          if (digit === '0') {
             mostrarMenu();
             digit = null;
 
-          //***
+          
         }
       } 
      
@@ -185,7 +185,7 @@ function clientLoaded(err, ari){
 
         query = '';
         await play(incoming, pathAudios);
-        incoming.removeListener('ChannelDtmfReceived', agendarCita);
+        incoming.removeListener('ChannelDtmfReceived', solicitudCertificado);
 
         setTimeout(function () {
           colgarLLamada(incoming);
