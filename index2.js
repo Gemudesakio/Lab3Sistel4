@@ -18,6 +18,7 @@ let text = '';
 let tipoCertificado = '';
 let codigo = '';
 let estado = '';
+let menuPlayback;
 
 const pathAudios = `sound:/${__dirname}/certificados/audios/gsm/audio`;
 
@@ -55,6 +56,13 @@ function clientLoaded(err, ari){
        
           switch (digit) {
             case '1':
+              if (menuPlayback) {
+                menuPlayback.stop(function (err) {
+                  if (err) {
+                    console.error('Error al detener la reproducción de menuIntro:', err);
+                  }
+                });
+              }
               console.log('Ha seleccionado la Opción 1');
               // Agrega el código que deseas ejecutar para la opción 1
               incoming.removeListener('ChannelDtmfReceived', introMenu);
@@ -135,17 +143,31 @@ function clientLoaded(err, ari){
    *  @param {Function} callback - callback invoked once playback is finished
    */
   
-  function play(channel, sound, callback) {
-    var playback = ari.Playback();
-    playback.once('PlaybackFinished',
-      function (event, instance) {
+  //function play(channel, sound, callback) {
+    
+    var stopPlayback = ari.stopPlayback;
+    //playback.once('PlaybackFinished',
+    //  function (event, instance) {
 
-        if (callback) {
-          callback(null);
-        }
-      });
-    channel.play({ media: sound }, playback, function (err, playback) { });
-  }
+     //   if (callback) {
+     //     callback(null);
+     //   }
+    //  });
+   // channel.play({ media: sound }, playback, function (err, playback) { });
+ // }
+ function play(channel, sound, callback) {
+  var playback = ari.Playback();
+  playback.once('PlaybackFinished', function (event, instance) {
+    if (callback) {
+      callback(null);
+    }
+  });
+  channel.play({ media: sound }, playback, function (err, playback) {
+    if (!err) {
+      menuPlayback = playback; // Asignar el objeto playback a la variable menuPlayback
+    }
+  });
+}
 
   async function consultaEstado(event, incoming) {
 
@@ -178,7 +200,7 @@ function clientLoaded(err, ari){
   
                 case 2:
                   console.log('solicitud rechazada');
-                 text = `${estado} su solicitud ha sido rechazada`
+                 text = ` su solicitud ha sido rechazada`
                   break;
   
                 default:
