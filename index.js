@@ -30,32 +30,28 @@ function clientLoaded(err, ari){
 
   ari.on('StasisStart', function (event, incoming) {
 
-    
     console.log('*****Se ha iniciado la aplicación*****', incoming.name);
-    const  bucle = null;
-     do {
-      // Mostrar el menú
-      incoming.answer(setTimeout((err) => {
-        play(incoming, `sound:/${__dirname}/menuIntro`)
-      }, 2000));
-     
-      console.log('---- Menu Inicio ---');
-      console.log('Ingrese 1 para solicitar su certificado estudiantil.');
-      console.log('Ingrese 2 para ver el estado de su solicitud.');
-      console.log('Antes del retraso');
-      incoming.on('ChannelDtmfReceived',  introMenu);
 
+    incoming.answer(setTimeout((err) => {
+      play(incoming, `sound:/${__dirname}/menuIntro`)
+    }, 2000));
+   
+      console.log('---- Menu Inicio ---');
+    console.log('Ingrese 1 para solicitar su certificado estudiantil.');
+    console.log('Ingrese 2 para ver el estado de su solicitud.');
+    console.log('Antes del retraso');
+    incoming.on('ChannelDtmfReceived', introMenu);
+
+    async function introMenu(event, channel) {
       
-        // Evaluar la opción seleccionada utilizando una estructura switch-case\
-      } while (bucle !== '0');
-      async function introMenu(event, channel) {
-        const  digit = event.digit;
-        bucle = digit;
-          switch (digit) {
-            case 1:
-              console.log('Ha seleccionado la Opción 1');
-              // Agrega el código que deseas ejecutar para la opción 1
-              incoming.removeListener('ChannelDtmfReceived', introMenu);
+      const digit = event.digit;
+        
+            switch (digit) {
+              
+
+
+              case '1': //Solicitar Certificado.
+                incoming.removeListener('ChannelDtmfReceived', introMenu);
                 console.log('- Solicita tu certificado -');
                 setTimeout(() => console.log('Después del retraso'), 5000);
                 text='Por favor digite su cedula, codigo estudiantil y tipo de certificados seguidos se la tecla asterisco y finalice con la tecla numeral.';
@@ -63,39 +59,30 @@ function clientLoaded(err, ari){
                 await convertirAudio();
                 await play(incoming,pathAudios);
                 certificado(event, incoming);
-              // Si deseas volver al inicio desde la opción 1, puedes establecer la opción en 0
-                
-              break;
-            case 2:
-              console.log('Ha seleccionado la Opción 2');
-              // Agrega el código que deseas ejecutar para la opción 2
-              incoming.removeListener('ChannelDtmfReceived', introMenu);
+                break;
+              
+              case '2':    //Consultar Estado Certificado
+                incoming.removeListener('ChannelDtmfReceived', introMenu);
                 console.log('- consulta el estado de tu solicitud -');
                 text='Por favor digite su cédula, seguida de la tecla numeral.';
                 await generarAudio(text);
                 await convertirAudio();
                 await play(incoming,pathAudios);
                 estado(event, incoming, channel);
-              // Si deseas volver al inicio desde la opción 2, puedes establecer la opción en 0
-                
-              break;
-            case 0:
-              console.log('Volviendo al inicio...');
-              
-              break;
-            default:
-              console.log('Opción no válida. Inténtelo de nuevo.');
+                break;
+
+            
+            
+              default:
+                console.log('default')
                 text = 'opción no válida, inténtelo de nuevo'
                 await generarAudio(text);
                 await convertirAudio();
                 play(channel, pathAudios)
-          }
-          return digit 
-        }
-      
-   
+                break;
+            }
+    }
 
-    
     function estado(event, incoming, channel) {
       cedula = '';
       console.log('---------consulta estado certificado---------');
