@@ -167,19 +167,20 @@ function clientLoaded(err, ari){
               console.log(resultado);
               estado = resultado[0].estado;
               console.log(prueba);
+              console.log(estado);
               switch (estado) {
-                case '0':
+                case 0:
                   console.log('solicitud pendiente');
                   //text = `${estado} solicitud pendiente`
                   break;
   
-                case '1':
+                case 1:
                   console.log('certificado generado');
                   //text = `${estado} certificado generado`
                   break;
                
   
-                case '2':
+                case 2:
                   console.log('solicitud rechazada');
                 //  text = `${estado} solicitud rechazada`
                   break;
@@ -192,7 +193,9 @@ function clientLoaded(err, ari){
               console.log('Resultado vacío');
               console.log('Resultado Encontrado');
               console.log(resultado);
+              estado = resultado[0].estado;
               console.log(prueba);
+              console.log(estado);
             }
 
           
