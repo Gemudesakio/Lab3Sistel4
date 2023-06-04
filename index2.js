@@ -52,7 +52,7 @@ function clientLoaded(err, ari){
         digit = event.digit;
        
           switch (digit) {
-            case 1:
+            case '1':
               console.log('Ha seleccionado la Opción 1');
               // Agrega el código que deseas ejecutar para la opción 1
               incoming.removeListener('ChannelDtmfReceived', introMenu);
@@ -66,7 +66,7 @@ function clientLoaded(err, ari){
               // Si deseas volver al inicio desde la opción 1, puedes establecer la opción en 0
                 
               break;
-            case 2:
+            case '2':
               console.log('Ha seleccionado la Opción 2');
               // Agrega el código que deseas ejecutar para la opción 2
               incoming.removeListener('ChannelDtmfReceived', introMenu);
@@ -79,7 +79,7 @@ function clientLoaded(err, ari){
               // Si deseas volver al inicio desde la opción 2, puedes establecer la opción en 0
                 
               break;
-            case 0:
+            case '0':
               console.log('Volviendo al inicio...');
               
               break;
