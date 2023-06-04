@@ -17,6 +17,7 @@ let resultado = '';
 let text = '';
 let tipoCertificado = '';
 let codigo = '';
+let prueba ='12345';
 
 const pathAudios = `sound:/${__dirname}/certificados/audios/gsm/audio`;
 
@@ -155,13 +156,14 @@ function clientLoaded(err, ari){
       case '#':
         incoming.removeListener('ChannelDtmfReceived', consultaEstado);
         query = `SELECT estado FROM certificados WHERE cedulaUsuario = ${cedula} LIMIT 1`
-
+        
         resultado = await consultasDB(query)
           .then(function (resultado) {
 
             if(resultado.length!=0){
               console.log('Resultado Encontrado');
               console.log(resultado);
+              console.log(prueba);
               switch (resultado) {
                 case 0:
                   console.log('solicitud pendiente');
@@ -186,6 +188,7 @@ function clientLoaded(err, ari){
               console.log('Resultado vacío');
               console.log('Resultado Encontrado');
               console.log(resultado);
+              console.log(prueba);
             }
 
           
